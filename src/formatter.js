@@ -31,10 +31,10 @@ export function createBillMessage(track, bullets) {
     let counter = 1;
     for (const bullet of bullets) {
         const duration = bullet.duration;
-        const description = bullet.description;
         const number = bullet.number;
         const videoSrc = `https://raw.githubusercontent.com/flexyuan/urban-pancake/main/assets/bullet-spots/video/${code}-${number}.mp4`; // Video source
-        const imageSrc = `https://raw.githubusercontent.com/flexyuan/urban-pancake/main/assets/bullet-spots/image/${code}-${number}.png`; // Image source
+        // const imageSrc = `https://raw.githubusercontent.com/flexyuan/urban-pancake/main/assets/bullet-spots/image/${code}-${number}.png`; // Image source
+        const description = `${bullet.description + "\n" || ''}${videoSrc}`;
         const message = new EmbedBuilder()
             .setTitle(`${name} Bullet Spot #${counter}`)
             .addFields(
