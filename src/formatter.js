@@ -11,7 +11,7 @@ export function createStrategyMessage(track) {
     const type = strategy.type;
     const bestPlacement = strategy.bestPlacement;
     const description = strategy.description;
-    const trackIconImage = `https://shortcat.pro/track-icon/${code}.png`
+    const trackIconImage = `https://raw.githubusercontent.com/flexyuan/urban-pancake/main/assets/track-icon/${code}.png`
     const message = new EmbedBuilder()
         .setTitle(`${name} (${code}) Strategy`)
         .setThumbnail(trackIconImage)
@@ -33,8 +33,8 @@ export function createBillMessage(track, bullets) {
         const duration = bullet.duration;
         const description = bullet.description;
         const number = bullet.number;
-        const videoSrc = `https://shortcat.pro/bullet-spots/video/${code}-${number}.mp4`; // Video source
-        const imageSrc = `https://shortcat.pro/bullet-spots/image/${code}-${number}.png`; // Image source
+        const videoSrc = `https://raw.githubusercontent.com/flexyuan/urban-pancake/main/assets/bullet-spots/video/${code}-${number}.mp4`; // Video source
+        const imageSrc = `https://raw.githubusercontent.com/flexyuan/urban-pancake/main/assets/bullet-spots/image/${code}-${number}.png`; // Image source
         const message = new EmbedBuilder()
             .setTitle(`${name} Bullet Spot #${counter}`)
             .addFields(
