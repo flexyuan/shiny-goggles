@@ -2,6 +2,25 @@ import {Client, GatewayIntentBits} from 'discord.js';
 import {TOKEN} from './config.js';
 const client = new Client({intents: [GatewayIntentBits.Guilds]});
 import {handleStartegyMessage, handleBillMessage} from './src/handler.js';
+import http from 'http';
+
+const PORT = 8080;
+
+const server = http.createServer((req, res) => {
+    if (req.url === '/health' && req.method === 'GET') {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.end('OK');
+    } else {
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end('Not Found');
+    }
+});
+
+server.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+});
+
+
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
