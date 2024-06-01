@@ -41,7 +41,7 @@ export function createBillMessage(track, bullets) {
                 {name: 'Duration', value: `${duration}s`, inline: true},
             )
             .setURL(videoSrc)
-            .setImage(imageSrc)
+            // .setImage(imageSrc)
             .setColor(0xFA5192);
         if (description) {
             message.setDescription(description);
