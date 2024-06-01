@@ -20,7 +20,7 @@ export function createStrategyMessage(track) {
             {name: 'Type', value: type, inline: true},
             {name: 'Best Placement', value: bestPlacement, inline: true},
         )
-        .setColor(0x0099FF)
+        .setColor(0xFA5192)
     return {embeds: [message]};
 }
 
@@ -42,7 +42,7 @@ export function createBillMessage(track, bullets) {
             )
             .setURL(videoSrc)
             .setImage(imageSrc)
-            .setColor(0x0099FF);
+            .setColor(0xFA5192);
         if (description) {
             message.setDescription(description);
         }

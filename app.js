@@ -20,7 +20,6 @@ server.listen(PORT, () => {
 });
 
 
-
 const client = new Client({intents: [GatewayIntentBits.Guilds]});
 
 client.on('ready', () => {
