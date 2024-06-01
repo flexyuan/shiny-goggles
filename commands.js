@@ -1,18 +1,31 @@
 import 'dotenv/config';
-import { getRPSChoices } from './game.js';
-import { capitalize, InstallGlobalCommands } from './utils.js';
+import {InstallGlobalCommands} from './utils.js';
+import {tracks} from './src/track.js';
 
 // Get the game choices from game.js
 function createCommandChoices() {
-  const choices = getRPSChoices();
   const commandChoices = [];
 
-  for (let choice of choices) {
+  for (const track of tracks.slice(0, 5)) {
     commandChoices.push({
-      name: capitalize(choice),
-      value: choice.toLowerCase(),
+      name: track.code,
+      value: track.code,
     });
-  }
+    commandChoices.push({
+      name: track.name,
+      value: track.code,
+    });
+    if (track.alt) {
+      commandChoices.push({
+        name: track.alt.code,
+        value: track.code,
+      });
+      commandChoices.push({
+        name: track.name,
+        value: track.code,
+      });
+    }
+  };
 
   return commandChoices;
 }
@@ -25,14 +38,14 @@ const TEST_COMMAND = {
 };
 
 // Command containing options
-const CHALLENGE_COMMAND = {
-  name: 'challenge',
-  description: 'Challenge to a match of rock paper scissors',
+const STRATEGY_COMMAND = {
+  name: 'strategy',
+  description: 'Get the strategy for a track',
   options: [
     {
       type: 3,
       name: 'object',
-      description: 'Pick your object',
+      description: 'Pick your track',
       required: true,
       choices: createCommandChoices(),
     },
@@ -40,6 +53,6 @@ const CHALLENGE_COMMAND = {
   type: 1,
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, STRATEGY_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

@@ -1,4 +1,4 @@
-export const strategy = [
+export const strategies = [
     {code: "MKS", type: "Bagger", bestPlacement: "Any", description: "MKS is all about (at top level) to put yourself in the best position possible with triple shrooms at the end of lap 3 to take motion glider. It's also a bagger because of cuts and great bill spots."},
     {code: "WP", type: "Runner", bestPlacement: "Top 2", description: "WP is very good for 1st and in wars for top 2, very hard to get good drafts and very often with good driving 1st keeps 1st. Also an extremely good track for inward."},
     {code: "SSC", type: "Drafter/Bagger", bestPlacement: "6-10", description: "Really depends how you wanna play this track, if you want front presence go for high drafting spots and bottoms, otherwise you can just treat this as a straight up bagger."},
