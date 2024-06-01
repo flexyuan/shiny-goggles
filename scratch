@@ -1,0 +1,862 @@
+const tracks = [
+    { number: 1, code: "MKS", name: "Mario Kart Stadium", maps: 1, cup: "mushroom" },
+    { number: 2, code: "WP", name: "Water Park", maps: 1, cup: "mushroom" },
+    { number: 3, code: "SSC", name: "Sweet Sweet Canyon", maps: 1, cup: "mushroom" },
+    { number: 4, code: "TR", name: "Thwomp Ruins", maps: 1, cup: "mushroom" },
+    { number: 5, code: "MC", name: "Mario Circuit", maps: 1, cup: "flower" },
+    { number: 6, code: "TH", name: "Toad Harbor", maps: 1, cup: "flower" },
+    { number: 7, code: "TM", name: "Twisted Mansion", maps: 1, cup: "flower" },
+    { number: 8, code: "SGF", name: "Shy Guy Falls", maps: 1, cup: "flower" },
+    { number: 9, code: "SA", name: "Sunshine Airport", maps: 1, cup: "star" },
+    { number: 10, code: "DS", name: "Dolphin Shoals", maps: 1, cup: "star" },
+    { number: 11, code: "Ed", name: "Electrodrome", maps: 1, cup: "star" },
+    { number: 12, code: "MW", name: "Mount Wario", maps: 1, cup: "star" },
+    { number: 13, code: "CC", name: "Cloudtop Cruise", maps: 1, cup: "special" },
+    { number: 14, code: "BDD", name: "Bone-Dry Dunes", maps: 1, cup: "special" },
+    { number: 15, code: "BC", name: "Bowser's Castle", maps: 1, cup: "special" },
+    { number: 16, code: "RR", name: "Rainbow Road", maps: 1, cup: "special" },
+    { number: 17, code: "rMMM", name: "Wii Moo Moo Meadows", maps: 1, cup: "shell" },
+    { number: 18, code: "rMC", name: "GBA Mario Circuit", maps: 1, cup: "shell" },
+    { number: 19, code: "rCCB", name: "DS Cheep Cheep Beach", maps: 1, cup: "shell" },
+    { number: 20, code: "rTT", name: "N64 Toad's Turnpike", maps: 1, cup: "shell" },
+    { number: 21, code: "rDDD", name: "GCN Dry Dry Desert", maps: 1, cup: "banana" },
+    { number: 22, code: "rDP3", name: "SNES Donut Plains 3", maps: 1, cup: "banana" },
+    { number: 23, code: "rRRy", name: "N64 Royal Raceway", maps: 1, cup: "banana" },
+    { number: 24, code: "rDKJ", name: "3DS DK Jungle", maps: 1, cup: "banana" },
+    { number: 25, code: "rWS", name: "DS Wario Stadium", maps: 1, cup: "leaf" },
+    { number: 26, code: "rSL", name: "GCN Sherbet Land", maps: 1, cup: "leaf" },
+    {
+        number: 27, code: "rMP", name: "3DS Music Park", maps: 1, cup: "leaf",
+        alt: {
+            code: "rMM",
+            name: "3DS Melody Motorway"
+        }
+    },
+    { number: 28, code: "rYV", name: "N64 Yoshi Valley", maps: 1, cup: "leaf" },
+    { number: 29, code: "rTTC", name: "DS Tick-Tock Clock", maps: 1, cup: "lightning" },
+    {
+        number: 30, code: "rPPS", name: "3DS Piranha Plant Slide", maps: 1, cup: "lightning",
+        alt: {
+            code: "rPPP",
+            name: "3DS Piranha Plant Pipeway"
+        }
+    },
+    { number: 31, code: "rGV", name: "Wii Grumble Volcano", maps: 1, cup: "lightning" },
+    { number: 32, code: "rRRd", name: "N64 Rainbow Road", maps: 1, cup: "lightning" },
+    { number: 33, code: "dYC", name: "GCN Yoshi Circuit", maps: 1, cup: "egg" },
+    { number: 34, code: "dEA", name: "Excitebike Arena", maps: 1, cup: "egg" },
+    { number: 35, code: "dDD", name: "Dragon Driftway", maps: 1, cup: "egg" },
+    { number: 36, code: "dMC", name: "Mute City", maps: 1, cup: "egg" },
+    { number: 37, code: "dWGM", name: "Wii Wario's Gold Mine", maps: 1, cup: "crossing" },
+    { number: 38, code: "dRR", name: "SNES Rainbow Road", maps: 1, cup: "crossing" },
+    { number: 39, code: "dIIO", name: "Ice Ice Outpost", maps: 1, cup: "crossing" },
+    { number: 40, code: "dHC", name: "Hyrule Circuit", maps: 1, cup: "crossing" },
+    { number: 41, code: "dBP", name: "GCN Baby Park", maps: 1, cup: "triforce" },
+    { number: 42, code: "dCL", name: "GBA Cheese Land", maps: 1, cup: "triforce" },
+    { number: 43, code: "dWW", name: "Wild Woods", maps: 1, cup: "triforce" },
+    { number: 44, code: "dAC", name: "Animal Crossing", maps: 1, cup: "triforce" },
+    {
+        number: 45, code: "dNBC", name: "3DS Neo Bowser City", maps: 1, cup: "bell",
+        alt: {
+            code: "dKC",
+            name: "3DS Koopa City"
+        }
+    },
+    { number: 46, code: "dRiR", name: "GBA Ribbon Road", maps: 1, cup: "bell" },
+    { number: 47, code: "dSBS", name: "Super Bell Subway", maps: 1, cup: "bell" },
+    { number: 48, code: "dBB", name: "Big Blue", maps: 1, cup: "bell" },
+    { number: 49, code: "bPP", name: "Tour Paris Promenade", maps: 1, cup: "goldendash" },
+    { number: 50, code: "bTC", name: "3DS Toad Circuit", maps: 1, cup: "goldendash" },
+    { number: 51, code: "bCMo", name: "N64 Choco Mountain", maps: 1, cup: "goldendash" },
+    { number: 52, code: "bCMa", name: "Wii Coconut Mall", maps: 1, cup: "goldendash" },
+    { number: 53, code: "bTB", name: "Tour Tokyo Blur", maps: 1, cup: "luckycat" },
+    { number: 54, code: "bSR", name: "DS Shroom Ridge", maps: 1, cup: "luckycat" },
+    { number: 55, code: "bSG", name: "GBA Sky Garden", maps: 1, cup: "luckycat" },
+    { number: 56, code: "bNH", name: "Ninja Hideaway", maps: 1, cup: "luckycat" },
+    { number: 57, code: "bNYM", name: "Tour New York Minute", maps: 1, cup: "turnip" },
+    { number: 58, code: "bMC3", name: "SNES Mario Circuit 3", maps: 1, cup: "turnip" },
+    { number: 59, code: "bKD", name: "N64 Kalimari Desert", maps: 1, cup: "turnip" },
+    { number: 60, code: "bWP", name: "DS Waluigi Pinball", maps: 1, cup: "turnip" },
+    { number: 61, code: "bSS", name: "Tour Sydney Sprint", maps: 1, cup: "propeller" },
+    { number: 62, code: "bSL", name: "GBA Snow Land", maps: 1, cup: "propeller" },
+    { number: 63, code: "bMG", name: "Wii Mushroom Gorge", maps: 1, cup: "propeller" },
+    { number: 64, code: "bSHS", name: "Sky-High Sundae", maps: 1, cup: "propeller" },
+    { number: 65, code: "bLL", name: "Tour London Loop", maps: 3, cup: "rock" },
+    { number: 66, code: "bBL", name: "GBA Boo Lake", maps: 1, cup: "rock" },
+    {
+        number: 67, code: "bRRM", name: "3DS Rock Rock Mountain", maps: 1, cup: "rock",
+        alt: {
+            code: "bAP",
+            name: "3DS Alpine Pass"
+        }
+    },
+    { number: 68, code: "bMT", name: "Wii Maple Treeway", maps: 1, cup: "rock" },
+    { number: 69, code: "bBB", name: "Tour Berlin Byways", maps: 3, cup: "moon" },
+    { number: 70, code: "bPG", name: "DS Peach Gardens", maps: 2, cup: "moon" },
+    { number: 71, code: "bMM", name: "Merry Mountain", maps: 1, cup: "moon" },
+    { number: 72, code: "bRR7", name: "3DS Rainbow Road", maps: 1, cup: "moon" },
+    { number: 73, code: "bAD", name: "Tour Amsterdam Drift", maps: 3, cup: "fruit" },
+    { number: 74, code: "bRP", name: "GBA Riverside Park", maps: 1, cup: "fruit" },
+    {
+        number: 75, code: "bDKS", name: "Wii DK Summit", maps: 1, cup: "fruit",
+        alt: {
+            code: "bDKSC",
+            name: "Wii DK Snowboard Cross"
+        }
+    },
+    { number: 76, code: "bYI", name: "Yoshi's Island", maps: 1, cup: "fruit" },
+    { number: 77, code: "bBR", name: "Tour Bangkok Rush", maps: 3, cup: "boomerang" },
+    { number: 78, code: "bMC", name: "DS Mario Circuit", maps: 1, cup: "boomerang" },
+    { number: 79, code: "bWS", name: "GCN Waluigi Stadium", maps: 1, cup: "boomerang" },
+    { number: 80, code: "bSSy", name: "Tour Singapore Speedway", maps: 3, cup: "boomerang" },
+    { number: 81, code: "bAtD", name: "Tour Athens Dash", maps: 3, cup: "feather" },
+    { number: 82, code: "bDC", name: "GCN Daisy Cruiser", maps: 1, cup: "feather" },
+    { number: 83, code: "bMH", name: "Wii Moonview Highway", maps: 1, cup: "feather" },
+    { number: 84, code: "bSCS", name: "Squeaky Clean Sprint", maps: 1, cup: "feather" },
+    { number: 85, code: "bLAL", name: "Tour Los Angeles Laps", maps: 3, cup: "cherry" },
+    { number: 86, code: "bSW", name: "GBA Sunset Wilds", maps: 1, cup: "cherry" },
+    { number: 87, code: "bKC", name: "Wii Koopa Cape", maps: 1, cup: "cherry" },
+    { number: 88, code: "bVV", name: "Tour Vancouver Velocity", maps: 3, cup: "cherry" },
+    { number: 89, code: "bRA", name: "Tour Rome Avanti", maps: 3, cup: "acorn" },
+    { number: 90, code: "bDKM", name: "GCN DK Mountain", maps: 1, cup: "acorn" },
+    { number: 91, code: "bDCt", name: "Wii Daisy Circuit", maps: 1, cup: "acorn" },
+    { number: 92, code: "bPPC", name: "Piranha Plant Cove", maps: 3, cup: "acorn" },
+    { number: 93, code: "bMD", name: "Tour Madrid Drive", maps: 3, cup: "spiny" },
+    { number: 94, code: "bRIW", name: "3DS Rosalina's Ice World", maps: 1, cup: "spiny" },
+    { number: 95, code: "bBC3", name: "SNES Bowser Castle 3", maps: 1, cup: "spiny" },
+    { number: 96, code: "bRRw", name: "Wii Rainbow Road", maps: 1, cup: "spiny" },
+];
+
+const trackNames = [];
+tracks.forEach(track => {
+    trackNames.push({
+        code: track.code,
+        name: track.name,
+    });
+    if (track.alt) {
+        trackNames.push({
+            code: track.alt.code,
+            name: track.alt.name,
+        })
+    }
+});
+
+const strategy = [
+    { code: "MKS", type: "Bagger", bestPlacement: "Any", description: "There are several great shortcuts and bullet spots. At the top level, this track is all about putting yourself in the best position possible with triple mushrooms at the end of lap 3 to take the motion glider shortcut." },
+    { code: "WP", type: "Runner", bestPlacement: "Front", description: "It's very hard to get drafts at the start. With good driving, typically 1st place will keep 1st. Also a very good track for inward drift." },
+    { code: "SSC", type: "Bagger & Drafter", bestPlacement: "Middle / Back", description: "Running is viable as there are not many shortcuts. But it's very easy to get hit near the end of lap 3, and that combined with the big donut shortcut makes bagging very strong." },
+    { code: "TR", type: "Runner & Shroomer", bestPlacement: "Front / Back", description: "Becomes a runner after the shroomless shortcut at the start of the track." },
+    { code: "MC", type: "Bagger", bestPlacement: "Back", description: "There are 2 big shortcuts, but it is surprisingly difficult to catch up if there is no shock." },
+    { code: "TH", type: "Runner & Drafter", bestPlacement: "Any", description: "It's easy to get bumped out of a good line at the first grass shortcut, and at the boost panel path." },
+    { code: "TM", type: "Drafter & Shroomer", bestPlacement: "Middle", description: "One of the best drafters / shroomers in the game. This track becomes a runner after the first shortcut on lap 1." },
+    { code: "SGF", type: "Drafter", bestPlacement: "Middle", description: "Very chaotic beginning with lots of bumps on a thin path. The waterfall is the last item set before the ending shortcuts, so plan your item use accordingly." },
+    { code: "SA", type: "Runner", bestPlacement: "Front", description: "Very simple track to run on, also because you need to take slow lines to get double item boxes. If you don't need a double item box, go for the single item box on the final glider to save lots of time." },
+    { code: "DS", type: "Drafter", bestPlacement: "Front / Middle", description: "One of the best drafters. You can still make comebacks with the 2 large bullet extensions, and with at least 1 mushroom to do motion glider at the end." },
+    { code: "Ed", type: "Drafter", bestPlacement: "Middle", description: "The pink path is much faster than the green path, so only take the green path if you need space. Bagging can work on this track because of the shortcut at the end." },
+    { code: "MW", type: "Runner & Shroomer", bestPlacement: "Front / Back", description: "If you get a mushroom at the start, take a small shortcut leading up to the first ramp. 1st has a big advantage getting 4 coins going into the cave. Bagging can work if you get 10 coins, since coins are difficult to get while running." },
+    { code: "CC", type: "Runner & Drafter", bestPlacement: "Front", description: "Great and simple runner with no mushroom shortcuts. The boost panel section and 2 gliders make this track extra safe for runners." },
+    { code: "BDD", type: "Drafter", bestPlacement: "Front / Middle", description: "Becomes a runner after the first few turns. It's important to know how to take a good line and get the coins going into the right path." },
+    { code: "BC", type: "Runner & Drafter", bestPlacement: "Front / Middle", description: "Great runner after the first few turns, where bumps can be really bad. Leading into the swinging ball section, look forward see its position and dodge it preemptively. You can hold a purple mini-turbo into the glider while grabbing whichever item box you want." },
+    { code: "RR", type: "Bagger & Runner", bestPlacement: "Any", description: "The item set right before the cannon is one of the most broken item sets in the game, because 1st place immediately gains a large distance away from you. Good items, including the shock, are common here even when you're not that far behind." },
+    { code: "rMMM", type: "Drafter & Shroomer", bestPlacement: "Any", description: "Try to draft on the first long turn, and use a mushroom on the grass right before the second item set. Blue shells and shocks are very uncommon because the track is very short, with only 2 item sets." },
+    { code: "rMC", type: "Bagger", bestPlacement: "Any", description: "Great bagger because there are lots of mushroom shortcuts and a great bullet extension. But this track is quite short and has fewer items than most tracks, so you should not bag for too long." },
+    { code: "rCCB", type: "Drafter", bestPlacement: "Middle", description: "Make sure you are safe after the last item set on lap 3, since items are extremely chaotic here. If you get a bullet bill at the water section, use it underwater on the right side so it doesn't take the upper path." },
+    { code: "rTT", type: "Runner", bestPlacement: "Front", description: "Stay to the left on the straight sections if you need coins. Bagging is also viable on this track because of how many item boxes you can chain." },
+    { code: "rDDD", type: "Bagger", bestPlacement: "Any", description: "One of the best bagging tracks in the game, as there are shortcuts everywhere, so you can stay extremely far behind for items. The final shortcut saves a lot of time, so even if you somehow have a lead at the end of the race, you will probably get passed here. Nothing really matters until around the start of lap 3." },
+    { code: "rDP3", type: "Shroomer & Bagger", bestPlacement: "Any", description: "Running is good if you can do all the shroomless shortcuts, but you will need to slow down if you want the second item set. Bagging can be good with how many shortcuts there are, but there are only 2 item sets and the track is short. Bullet bills are not great here because of bad drop off locations, so stars and mushrooms are better." },
+    { code: "rRRy", type: "Drafter & Bagger", bestPlacement: "Any", description: "There are lots of shortcuts, but they are mostly quite small. The biggest shortcut is right after the glider, but it skips the final item set. Coins are easy to get while running." },
+    { code: "rDKJ", type: "Runner", bestPlacement: "Front", description: "For both shortcuts, you can skip them and go around if you need coins. There are a few great bullet extensions. If you think you'll get a mushroom at the second item set, you can go into the grass shortcut before seeing your item and still take the shortcut." },
+    { code: "rWS", type: "Runner", bestPlacement: "Front", description: "You can have a big advantage in 1st by taking the first 4 coins. Knowing the optimal boost ramp strategies is very important for doing well. Bagging does not work well, as the shortcut on the final turn saves very little time." },
+    { code: "rSL", type: "Drafter", bestPlacement: "Middle", description: "It's much slower to go for double item boxes, so skip them if you don't need them." },
+    { code: "rMP", type: "Runner", bestPlacement: "Front", description: "When the music notes hit the ground, you can trick quite late into the bounce. Make sure you know how to aim for the double item box at the second item set. If you are forced to bag, make sure you know where the bullet extension is." },
+    { code: "rYV", type: "Bagger", bestPlacement: "Any", description: "The first item set is incredibly broken, as 1st place only needs to pass the bridge for the shock to be available. If you need coins, take any left path that is not the bridge. Taking the final shortcut is very important for doing well." },
+    { code: "rTTC", type: "Runner", bestPlacement: "Front", description: "The beginning is very dangerous as you could get bumped off of the clock hand.Look forward during the gear section to prepare your line so you can hit the tricks. You can only take the final clock shortcut at certain times, and it is most important on lap 1. You probably won't be able to take it on lap 2 or 3, unless you are on a very fast pace." },
+    { code: "rPPS", type: "Runner", bestPlacement: "Front", description: "In 1st place, you can take the middle path behind the piranha plant for coins. If you are not in 1st, you risk having the coins taken and you risk being bumped off. Items are very chaotic in the pack, so 1st place has a big advantage." },
+    { code: "rGV", type: "Drafter", bestPlacement: "Middle", description: "At the first split path, the right path is only slightly faster, so you can take the left path for more space. The second and third item sets are slightly broken, so bagging can work." },
+    { code: "rRRd", type: "Drafter", bestPlacement: "Back", description: "The entire first turn is great for drafting, and it can take you from a bottom spot to a top spot. Starting on lap 2, this is one of the best tracks to run, as it is very short and you are unlikely to see a blue shell or shock. Bagging can work because it is difficult to get coins while running. Leading up to the first glider, there is a smart steering strategy to go faster." },
+    { code: "dYC", type: "Bagger", bestPlacement: "Any", description: "There are several great bullet extensions, including one of the best in the game. It is very likely for there to be multiple shocks, so if an early shock happens then be prepared for a 2nd one. Try to have multiple dodge items on lap 3 to prepare for the chaos." },
+    { code: "dEA", type: "Runner & Bagger", bestPlacement: "Front / Back", description: "The shortcuts are balanced enough that running and bagging are both viable. When running, it's important to be good at driving on the ramps and aiming for coins. The layout of the ramps is different each race, so practice driving in versus mode." },
+    { code: "dDD", type: "Runner", bestPlacement: "Front", description: "1st place can get a double item box at the first item set, which makes this track a powerful runner. The gap jump can be done without an item, so the only mushroom shortcut is at the end of the track." },
+    { code: "dMC", type: "Drafter", bestPlacement: "Middle", description: "The beginning can give very bad bumps as you go for the coin panel on the right. The shroomless shortcut is very punishing if you fail it, so make sure you are consistent. Use your shock dodge items where there are no boost panels, since being small on boost panels is not that slow." },
+    { code: "dWGM", type: "Drafter", bestPlacement: "Front / Middle", description: "There is a lot of chaos after the last item set, and there is bad visibility on the right path. If you don't need the double item box, consider taking the left path, which is only barely slower." },
+    { code: "dRR", type: "Runner", bestPlacement: "Front (Top 4)", description: "Everyone after 4th will be hit by the thwomp if you take a tight line. Pay attention to the thwomp cycles to avoid being hit. Take a different path around a thwomp if you are at risk of being sniped." },
+    { code: "dIIO", type: "Drafter", bestPlacement: "Front", description: "The first shortcut is risky because of bumps, so go around the shortcut if you are in the pack. Strategically switch paths when trying to dodge items." },
+    { code: "dHC", type: "Runner & Shroomer", bestPlacement: "Front / Back", description: "In 1st, go for the 2 coins on the left, and then the 3 coins on the turn. If you get a mushroom at the first item set, take the grass shortcut before the bridge. The shroomless shortcut at the end is extremely important to know. On lap 3, hop slightly left at the shortcut to dodge the plant." },
+    { code: "dBP", type: "Bagger", bestPlacement: "Any", description: "Top spots are extremely unsafe because you can get hit by attacks from people who you have lapped. Shocks typically start around lap 4, so start chaining all your dodge items into the many item boxes." },
+    { code: "dCL", type: "Bagger", bestPlacement: "Any", description: "This track is almost entirely shortcuts, it has one of the best bullet extensions in the game, and it has a huge shortcut right at the end of the track. Even if you have a breakaway in 1st going into the final few turns, you could still lose. There is a big gap between the second item set and the double shortcut at the end, so be extra safe during that section on lap 3." },
+    { code: "dWW", type: "Runner", bestPlacement: "Front", description: "A great runner, as the ending shortcut saves very little time with a mushroom. It can be done shroomless, but is quite difficult. Make sure can consistently aim for the double item box in the water stream." },
+    { code: "dAC", type: "Bagger", bestPlacement: "Any", description: "There is a lot of chaos near the final item set, so use your dodge items here. Taking the final shortcut on lap 3 is crucial to doing well." },
+    { code: "dNBC", type: "Runner & Shroomer", bestPlacement: "Front", description: "With the slippery road and sharp turns, it's very important to know how to drive this track well. If you set yourself up poorly on the turns, you will take the entire turn poorly and lose lots of time." },
+    { code: "dRiR", type: "Shroomer & Bagger", bestPlacement: "Back", description: "If you get a mushroom at the first item set, use it on the big shortcut before the second item set. Bumps can be very punishing at the wavy road section and shroomless shortcuts, so go around if it's not safe. Be ready to turn on smart steering in the glider shortcut." },
+    { code: "dSBS", type: "Bagger", bestPlacement: "Any", description: "There are 4 item sets instead of the usual 3, which makes it difficult for runners to deal with blue shells and shocks, and is better for baggers. Chaining a star into the second or third item set on lap 3 is very powerful, as you can take shortcuts and get more items soon." },
+    { code: "dBB", type: "Shroomer", bestPlacement: "Middle", description: "If you get a mushroom, use it on the first offroad shortcut. Make sure you know all the shroomless shortcuts on lap 2 and lap 3. There is a broken item set at the cannon glider, so be ready for a shock on lap 3." },
+    { code: "bPP", type: "Runner", bestPlacement: "Front", description: "This is a very effective running track, especially since it is much slower to go for more items. If you are in a top spot with decent items, you should not go for more items." },
+    { code: "bTC", type: "Bagger", bestPlacement: "Any", description: "The final shortcut is more difficult than it looks, so make sure you are consistent at it. It is crucial to dodge the chaos in the second half of lap 3, and to have an item to take the final shortcut." },
+    { code: "bCMo", type: "Drafter", bestPlacement: "Front / Middle", description: "Thin paths and walls make this a very chaotic trackso try to maintain distance from others. Chaining a star into the final item set, or using the bullet extension will help keep you safe." },
+    { code: "bCMa", type: "Shroomer", bestPlacement: "Middle", description: "At the split path at the end, both paths are viable. The top path has a glider which is safer, but the optimal glider strategy (bonk the wall to charge a purple mini-turbo) skips the item. The optimal line at the bottom path gets a double item box. Motion glider is very important on lap 3 with triple mushrooms." },
+    { code: "bTB", type: "Drafter", bestPlacement: "Back", description: "Pay extra attention to your coins, as there are very few coins on this track. Lap 3 is extremely chaotic, so try to be extra safe during the walled spiral section." },
+    { code: "bSR", type: "Shroomer", bestPlacement: "Middle", description: "" },
+    { code: "bSG", type: "Shroomer & Bagger", bestPlacement: "Middle", description: "The final two turns are extremely chaotic, so being in the pack is always risky. It's important to know how to take the final shroomless shortcut, and how to take a good line into the mushroom shortcut after the bounce pad." },
+    { code: "bNH", type: "Runner", bestPlacement: "1st / Back", description: "1st is the only spot that won't get bumped off the track if you drive fast. At the start, take the top path all the way so you can get a set of 4 coins, since coins are extremely hard to get. Pay attention to other people opening up the shortcut for you. You can take alternate paths if you need to dodge items." },
+    { code: "bNYM", type: "Shroomer", bestPlacement: "Back", description: "If you get a mushroom at the start, use it to cut off the small bit of grass at the first turn. This track is a great runner until the second half of lap 3. There is a lot of time after the final item set, where getting shocked can ruin your race, while the people in the back can also take a bullet extension." },
+    { code: "bMC3", type: "Bagger", bestPlacement: "Any", description: "The entire track is just shortcuts. You can use all of lap 3 to make a huge comeback. The best shortcut is right after the final item set, so chaining a star here or saving a mushroom is crucial." },
+    { code: "bKD", type: "Bagger", bestPlacement: "Any", description: "The most important shortcut is the big shortcut after the split path on lap 3. You need at least 2 mushrooms (ideally 3 mushrooms). When dodging the train on lap 2, you may want to pick the side that keeps you safe from snipes." },
+    { code: "bWP", type: "Drafter", bestPlacement: "Front / Middle", description: "You can outrun the 1st pinball if you start in 1st and drive fast, or get a draft into the front, which sets you up with a large distance from the pack. Attack items are very chaotic because of the walls, so protection items are very important. All the pinballs follow the same pattern, so make sure you know how they move, especially in the section where they bounce." },
+    { code: "bSS", type: "Drafter", bestPlacement: "Middle / Back", description: "Try to get drafts after the glider. Top 2 can take all the coins at the following straight section and gain a huge advantage." },
+    { code: "bSL", type: "Bagger", bestPlacement: "Any", description: "The gap jump at the start is the biggest shortcut in the game, which you can take with a mushroom or star. The entire strategy of this track is about how you can keep your item safe until the shortcut on lap 3." },
+    { code: "bMG", type: "Bagger", bestPlacement: "Any", description: "There second item set is broken, and it's very common to get items you need to take the gap jump. The gap jump is one of the biggest shortcuts in the game, and is right at the end of the track, so taking the gap jump is the key to doing well. You are more likely to succeed the gap jump if you have 10 coins. At a lower level, learning how to super bounce on the mushrooms will give you a huge advantage, making this track a great runner in that situation." },
+    { code: "bSHS", type: "Runner & Drafter", bestPlacement: "Front", description: "After the second item set, hold down on your stick to float more as you get tricks. Because there are no walls, it is very difficult to hit snipes. You will be mostly safe in a top position as long as you look backwards to dodge attack items. When doing the mini-turbo trick on the stairs, start slightly more to the right, as this track has floaty physics and you may fall off." },
+    { code: "", type: "", bestPlacement: "", description: "" },
+];
+
+const bulletSpots = [
+    { code: "MKS", number: 1, duration: 8.0, include: true, description: "Ends early so you can do motion glider." },
+{ code: "MKS", number: 2, duration: 12.0, include: true, description: "Use it just before the left curb ends." },
+{ code: "MKS", number: 3, duration: 8.4, include: true, description: "" },
+{ code: "BC", number: 1, duration: 10.5, include: true, description: "Use it just behind the first torch." },
+{ code: "CC", number: 1, duration: 8.0, include: true, description: "Drift off completely sideways to deactivate the glider, then the bullet will not slow down at the end of the cannon section." },
+{ code: "CC", number: 2, duration: 10.3, include: true, description: "Use it at the 2nd flying thing." },
+{ code: "dEA", number: 1, duration: 9.8, include: true, description: "" },
+{ code: "dEA", number: 2, duration: 10.1, include: true, description: "Use it next to the red flag on the right." },
+{ code: "dNBC", number: 2, duration: 8.0, include: true, description: "Don't use it any later, or you will skip the item set." },
+{ code: "dNBC", number: 3, duration: 8.8, include: true, description: "" },
+{ code: "dRiR", number: 1, duration: 10.5, include: true, description: "Hop deep into the shortcut, or else it will do a bad shortcut." },
+{ code: "dRiR", number: 2, duration: 9.9, include: true, description: "" },
+{ code: "dRiR", number: 3, duration: 8.4, include: true, description: "" },
+{ code: "dRR", number: 1, duration: 9.0, include: true, description: "" },
+{ code: "dRR", number: 2, duration: 9.5, include: true, description: "" },
+{ code: "dSBS", number: 1, duration: 10.9, include: true, description: "Use it at the first coin." },
+{ code: "dSBS", number: 2, duration: 8.0, include: true, description: "This is the 2nd white shortcut on the right." },
+{ code: "Ed", number: 3, duration: 11.3, include: true, description: "" },
+{ code: "Ed", number: 1, duration: 9.8, include: true, description: "Use it right before the item set." },
+{ code: "Ed", number: 2, duration: 9.9, include: true, description: "Use it right before the item set." },
+{ code: "rCCB", number: 1, duration: 10.1, include: true, description: "" },
+{ code: "rCCB", number: 2, duration: 9.9, include: true, description: "Use it after passing both dark lines on the ground." },
+{ code: "rCCB", number: 3, duration: 8.4, include: true, description: "" },
+{ code: "rCCB", number: 4, duration: 8.0, include: true, description: "If you use it in this section, go underwater on the right to avoid the top path." },
+{ code: "rDDD", number: 1, duration: 8.0, include: true, description: "Use it in the shortcut after bagging at the 2nd item set." },
+{ code: "rDDD", number: 2, duration: 8.0, include: true, description: "" },
+{ code: "rDDD", number: 3, duration: 8.0, include: true, description: "Hop deep into the shortcut, or else the bullet will not take the shortcut." },
+{ code: "rDKJ", number: 5, duration: 12.0, include: true, description: "Use it at the first enemy." },
+{ code: "rDKJ", number: 1, duration: 10.2, include: true, description: "" },
+{ code: "rDKJ", number: 2, duration: 9.0, include: true, description: "" },
+{ code: "rDP3", number: 1, duration: 9.4, include: true, description: "Use it right after the final grass patch." },
+{ code: "rDP3", number: 2, duration: 9.2, include: true, description: "" },
+{ code: "rDP3", number: 3, duration: 8.0, include: true, description: "" },
+{ code: "rDP3", number: 4, duration: 8.7, include: true, description: "" },
+{ code: "rDP3", number: 5, duration: 8.0, include: true, description: "" },
+{ code: "rMC", number: 2, duration: 11.1, include: true, description: "Hop deep into the shortcut, or else the bullet will not extend." },
+{ code: "rMC", number: 1, duration: 8.8, include: true, description: "Use it when the curb begins on the right." },
+{ code: "rMC", number: 3, duration: 8.9, include: true, description: "" },
+{ code: "rMC", number: 4, duration: 9.1, include: true, description: "" },
+{ code: "rMP", number: 1, duration: 11.5, include: true, description: "" },
+{ code: "rMP", number: 2, duration: 9.9, include: true, description: "Having the bullet take the final shortcut is inconsistent." },
+{ code: "rPPS", number: 1, duration: 11.6, include: true, description: "Use it right after landing from the 1st trick ramp." },
+{ code: "RR", number: 1, duration: 10.1, include: true, description: "Use it after the cannon, at the 3rd black line on the ground." },
+{ code: "RR", number: 2, duration: 10.1, include: true, description: "Use it at the 1st black line on the ground after the boost panel." },
+{ code: "rRRd", number: 1, duration: 9.7, include: true, description: "Use it before the item set on lap 3." },
+{ code: "rRRy", number: 1, duration: 8.7, include: true, description: "Use it at the sharpest turn." },
+{ code: "rRRy", number: 2, duration: 9.3, include: true, description: "Use it at the 3rd pink sign." },
+{ code: "rSL", number: 1, duration: 9.8, include: true, description: "" },
+{ code: "rSL", number: 2, duration: 9.5, include: true, description: "Right after the 3rd coin." },
+{ code: "rSL", number: 3, duration: 9.6, include: true, description: "" },
+{ code: "rSL", number: 4, duration: 9.4, include: true, description: "" },
+{ code: "rSL", number: 5, duration: 8.9, include: true, description: "" },
+{ code: "rSL", number: 6, duration: 9.5, include: true, description: "" },
+{ code: "rTTC", number: 1, duration: 9.4, include: true, description: "" },
+{ code: "SSC", number: 1, duration: 12.0, include: true, description: "Hop into the shortcut." },
+{ code: "TH", number: 1, duration: 10.1, include: true, description: "Don't hold any direction on the stick, and the bullet will take the shortcut." },
+{ code: "TH", number: 2, duration: 9.8, include: true, description: "Don't hold any direction on the stick, and the bullet will take the shortcut." },
+{ code: "TM", number: 1, duration: 8.2, include: true, description: "" },
+{ code: "TM", number: 2, duration: 9.5, include: true, description: "Do a mini-turbo hop + another hop in the grass." },
+{ code: "TR", number: 1, duration: 9.9, include: true, description: "Use it right before going into the water." },
+{ code: "TR", number: 2, duration: 9.9, include: false, description: "Use it right after going into the glider." },
+{ code: "dWGM", number: 1, duration: 10.3, include: true, description: "" },
+{ code: "bAD", number: 1, duration: 10.2, include: true, description: "Use it on lap 2 before the water." },
+{ code: "bAD", number: 2, duration: 9.6, include: true, description: "Use it on lap 3 in the second half of the grass shortcut." },
+{ code: "bAtD", number: 1, duration: 11.3, include: true, description: "Use it at the end of lap 1." },
+{ code: "bAtD", number: 2, duration: 10.3, include: true, description: "Use it on lap 2 at the row of coins. Hold right on the stick to end at the boost panel." },
+{ code: "bAtD", number: 3, duration: 10.4, include: true, description: "Use it on lap 3 at the first shortcut. Avoid the pillar afterwards." },
+{ code: "bBB", number: 1, duration: 9.6, include: true, description: "Use it on lap 2 at the item box." },
+{ code: "bBB", number: 2, duration: 10.4, include: true, description: "Use it on lap 3 at the first shortcut." },
+{ code: "bBC3", number: 1, duration: 8.9, include: true, description: "" },
+{ code: "bBC3", number: 2, duration: 8.0, include: true, description: "Ends right before the finish line." },
+{ code: "bBC3", number: 3, duration: 8.2, include: true, description: "Ends before the item set." },
+{ code: "bBL", number: 1, duration: 8.4, include: true, description: "Use it at the beginning of the first turn. Ends before the item set." },
+{ code: "bBL", number: 2, duration: 10.1, include: true, description: "Use it as soon as you touch the water. Ends right before the finish line." },
+{ code: "bBR", number: 1, duration: 11.9, include: true, description: "Use it on lap 3 after the blue sign on the right. Ends before the last item set." },
+{ code: "bCMa", number: 1, duration: 10.3, include: true, description: "" },
+{ code: "bCMa", number: 2, duration: 10.7, include: true, description: "Hold right at the start to take the top path. Hold left at the end to get an item box." },
+{ code: "bCMo", number: 1, duration: 12.0, include: true, description: "Use it just before the first crack on the ground. Ends before the first item set." },
+{ code: "bCMo", number: 3, duration: 9.9, include: true, description: "Hold a right drift as the bullet ends." },
+{ code: "bDC", number: 1, duration: 9.2, include: true, description: "" },
+{ code: "bDC", number: 2, duration: 9.3, include: true, description: "Use it at the 3rd coin. Ends right before the last item set." },
+{ code: "bDC", number: 3, duration: 9.5, include: true, description: "Use it before the last table." },
+{ code: "bDC", number: 4, duration: 10.3, include: true, description: "" },
+{ code: "bDCt", number: 1, duration: 8.9, include: true, description: "" },
+{ code: "bDCt", number: 2, duration: 9.6, include: true, description: "Ends right before last item set." },
+{ code: "bDCt", number: 3, duration: 9.5, include: true, description: "Use it as the ground changes." },
+{ code: "bDKM", number: 1, duration: 8.4, include: true, description: "Ends before the first item set." },
+{ code: "bDKM", number: 2, duration: 8.0, include: true, description: "Drift off completely sideways to deactivate the glider, then the bullet will not slow down at the end of the cannon section." },
+{ code: "bDKS", number: 3, duration: 8.0, include: true, description: "Hop off the shortcut with an orange mini-turbo, and use the bullet after passing the the fences. Even though this is not an extension, it is extremely fast." },
+{ code: "bDKS", number: 1, duration: 10.2, include: true, description: "Drift off completely sideways to deactivate the glider, then the bullet will not slow down at the end of the cannon section." },
+{ code: "bDKS", number: 2, duration: 10.1, include: true, description: "Skips the shortcut." },
+{ code: "bKC", number: 1, duration: 10.2, include: true, description: "Use it right after going off the ramp." },
+{ code: "bKC", number: 2, duration: 8.8, include: false, description: "Use it right after the red floor in the pipe." },
+{ code: "bKC", number: 3, duration: 9.0, include: true, description: "Use it right after the first ramp in the pipe. Ends right before the finish line." },
+{ code: "bKC", number: 4, duration: 10.2, include: true, description: "Use it right after the final spin booster. Skips the first item set." },
+{ code: "bKD", number: 1, duration: 8.8, include: false, description: "Use it on lap 1 at the final cactus." },
+{ code: "bKD", number: 2, duration: 11.3, include: true, description: "Use it on lap 2 at the right path. Skips the item set." },
+{ code: "bLAL", number: 1, duration: 10.7, include: true, description: "Use it on lap 2 at the first item set." },
+{ code: "bLAL", number: 2, duration: 10.0, include: true, description: "Use it on lap 2 after the red arrows on the left." },
+{ code: "bLL", number: 1, duration: 10.5, include: true, description: "Use it at the end of lap 1 or lap 2." },
+{ code: "bLL", number: 2, duration: 10.1, include: true, description: "Use it on lap 2 at the first item set." },
+{ code: "bLL", number: 3, duration: 9.9, include: true, description: "Use it at the stairs on lap 2." },
+{ code: "bLL", number: 4, duration: 11.8, include: true, description: "Use it on lap 2 at the final turn's first coin." },
+{ code: "bLL", number: 5, duration: 9.4, include: false, description: "Use it on lap 3 just before the red phone booth." },
+{ code: "bMC", number: 1, duration: 9.9, include: true, description: "" },
+{ code: "bMC", number: 2, duration: 8.0, include: true, description: "Ends right before last item set." },
+{ code: "bMC", number: 3, duration: 8.8, include: true, description: "Ends right before the finish line." },
+{ code: "bMC", number: 4, duration: 10.0, include: true, description: "Use it just after the sharp turn." },
+{ code: "bMC3", number: 1, duration: 8.5, include: true, description: "Ends before last item set." },
+{ code: "bMC3", number: 2, duration: 9.4, include: false, description: "Skips the last item set and the biggest shortcut." },
+{ code: "bMC3", number: 3, duration: 8.2, include: false, description: "" },
+{ code: "bMC3", number: 4, duration: 8.0, include: true, description: "Use it at the green pipe. Ends right before the finish line." },
+{ code: "bMD", number: 1, duration: 9.4, include: true, description: "" },
+{ code: "bMG", number: 1, duration: 9.0, include: true, description: "Ends right before the gap jump." },
+{ code: "bMG", number: 2, duration: 9.5, include: true, description: "Ends right before the gap jump." },
+{ code: "bMG", number: 3, duration: 8.1, include: true, description: "" },
+{ code: "bMG", number: 4, duration: 10.0, include: true, description: "" },
+{ code: "bMH", number: 1, duration: 8.9, include: false, description: "Use it just before the beginning of the bridge." },
+{ code: "bMH", number: 2, duration: 9.1, include: false, description: "Use it at the row of three spread out coins." },
+{ code: "bMH", number: 3, duration: 8.7, include: false, description: "Use it as you enter the tunnel." },
+{ code: "bMH", number: 4, duration: 10.7, include: true, description: "Use it at the last divider in the tunnel. Hold a right drift as the bullet ends." },
+{ code: "bMM", number: 1, duration: 9.0, include: true, description: "Ends right before the item set." },
+{ code: "bMM", number: 2, duration: 9.7, include: true, description: "Use it after passing the first wooden structure on the right. Ends right before the shortcut." },
+{ code: "bMM", number: 3, duration: 8.7, include: false, description: "" },
+{ code: "bMM", number: 4, duration: 10.2, include: true, description: "Use it after going off the blue ramp. Ends right before the finish line." },
+{ code: "bMM", number: 5, duration: 10.9, include: false, description: "Use it at the first spin boosters." },
+{ code: "bMT", number: 1, duration: 9.3, include: true, description: "Use it at the first coin. Ends before the item set." },
+{ code: "bMT", number: 2, duration: 10.2, include: true, description: "Use it 2 seconds into the cannon glider." },
+{ code: "bMT", number: 3, duration: 8.9, include: false, description: "Use at the last coin on the sharp turn." },
+{ code: "bMT", number: 4, duration: 9.0, include: false, description: "" },
+{ code: "bMT", number: 5, duration: 9.0, include: true, description: "Use it on the halfpipe instead if you need an item." },
+{ code: "bMT", number: 6, duration: 8.9, include: false, description: "Gets an item." },
+{ code: "bNH", number: 1, duration: 10.6, include: true, description: "Use it as soon as the ground becomes flat." },
+{ code: "bNH", number: 2, duration: 9.1, include: true, description: "" },
+{ code: "bNH", number: 3, duration: 10.8, include: true, description: "Ends right before the finish line." },
+{ code: "bNYM", number: 1, duration: 10.8, include: true, description: "Use it on lap 2 at the corner before the red bus." },
+{ code: "bNYM", number: 2, duration: 8.8, include: true, description: "Use it on lap 2 at the first taxi." },
+{ code: "bNYM", number: 3, duration: 9.0, include: true, description: "Use it on lap 3 where the wet road ends." },
+{ code: "bNYM", number: 4, duration: 9.4, include: true, description: "Use it on lap 3 at the grass shortcut. Ends after the last turn." },
+{ code: "bPG", number: 1, duration: 9.4, include: true, description: "Use it on lap 1 or 2 at the final grass shortcut. Ends before the first item set." },
+{ code: "bPG", number: 2, duration: 9.8, include: true, description: "Use it on lap 3 right before the ramp item set. Hold right at the end to get an item." },
+{ code: "bPG", number: 3, duration: 10.0, include: true, description: "Use it on lap 3 right before the piranha plant. Ends before the last item set." },
+{ code: "bPG", number: 4, duration: 9.1, include: false, description: "" },
+{ code: "bPG", number: 5, duration: 10.6, include: true, description: "Use it on lap 3 at the grass Peach statue. Ends before the finish line." },
+{ code: "bPP", number: 1, duration: 9.2, include: false, description: "Use it on lap 1 or 2 at the glider coins." },
+{ code: "bPP", number: 2, duration: 9.4, include: true, description: "Use it on lap 3 at the corner before the piranha plant." },
+{ code: "bPP", number: 3, duration: 9.6, include: true, description: "Use it on lap 3 before landing from the glider. Ends before the finish line." },
+{ code: "bPPC", number: 1, duration: 8.9, include: false, description: "Use it as you exit the water on lap 2." },
+{ code: "bPPC", number: 2, duration: 8.9, include: false, description: "This is a lap 2 extension." },
+{ code: "bPPC", number: 3, duration: 8.8, include: false, description: "This is a lap 3 extension." },
+{ code: "bPPC", number: 4, duration: 8.8, include: true, description: "Use it on lap 3 at the big grass shortcut. Ends before the finish line." },
+{ code: "bRA", number: 1, duration: 9.7, include: true, description: "Use it on lap 2 at the final tree. Ends before the item set." },
+{ code: "bRA", number: 2, duration: 9.7, include: true, description: "Use it on lap 3 at the third coin." },
+{ code: "bRA", number: 3, duration: 10.1, include: true, description: "Use it on lap 3 befoer going down the stairs. Ends before the finish line." },
+{ code: "bRIW", number: 1, duration: 10.8, include: true, description: "Use it at the end of the first halfpipe. Skips 2 item sets." },
+{ code: "bRIW", number: 2, duration: 9.9, include: true, description: "Takes you safely past the narrow turn." },
+{ code: "bRIW", number: 3, duration: 11.0, include: true, description: "Use it as you exit the water." },
+{ code: "bRP", number: 1, duration: 8.2, include: false, description: "" },
+{ code: "bRR7", number: 1, duration: 12.0, include: true, description: "Use it on lap 2 at the second set of boost panels." },
+{ code: "bRR7", number: 2, duration: 9.1, include: true, description: "Use it right before lap 3." },
+{ code: "bRR7", number: 3, duration: 10.2, include: true, description: "Use it on lap 3 at the ramp before the tube." },
+{ code: "bRRM", number: 1, duration: 8.1, include: false, description: "Use it as you pass the third tree on the right." },
+{ code: "bRRM", number: 2, duration: 8.0, include: true, description: "Use the bullet at the second rock, or else it will exit the shortcut." },
+{ code: "bRRM", number: 3, duration: 8.0, include: true, description: "Takes you safely past the cave. Ends before the item set." },
+{ code: "bRRw", number: 1, duration: 12.0, include: true, description: "Use it as the track starts to bend downwards." },
+{ code: "bRRw", number: 2, duration: 9.5, include: false, description: "" },
+{ code: "bRRw", number: 3, duration: 10.7, include: true, description: "Use it right after the second item set." },
+{ code: "bRRw", number: 4, duration: 10.2, include: true, description: "Use it as you reach the coins." },
+{ code: "bRRw", number: 5, duration: 10.3, include: true, description: "Use it after landing from the gap jump shortcut." },
+{ code: "bRRw", number: 6, duration: 8.3, include: false, description: "" },
+{ code: "bSCS", number: 1, duration: 9.2, include: true, description: "Use it as you land in the drain." },
+{ code: "bSCS", number: 2, duration: 9.3, include: true, description: "Use it in the purple shortcut." },
+{ code: "bSCS", number: 3, duration: 9.2, include: true, description: "Hop into the shortcut and use it late." },
+{ code: "bSG", number: 1, duration: 9.8, include: true, description: "" },
+{ code: "bSG", number: 2, duration: 9.9, include: true, description: "" },
+{ code: "bSG", number: 3, duration: 10.4, include: true, description: "" },
+{ code: "bSHS", number: 1, duration: 9.9, include: true, description: "Use it before the first wafer." },
+{ code: "bSHS", number: 2, duration: 8.0, include: true, description: "Ends right before the finish line." },
+{ code: "bSL", number: 1, duration: 10.2, include: true, description: "Skips the shortcut." },
+{ code: "bSL", number: 2, duration: 10.1, include: true, description: "Use it after you pass the third tree on the right. Skips the shortcut." },
+{ code: "bSL", number: 3, duration: 8.0, include: true, description: "Ends before the finish line." },
+{ code: "bSR", number: 1, duration: 8.8, include: true, description: "Use it next to the first red arrows on the right." },
+{ code: "bSR", number: 2, duration: 9.8, include: true, description: "Use it just before you reach the grass shortcut. You can also use it in the shortcut. Skips the final shortcut." },
+{ code: "bSS", number: 1, duration: 9.2, include: true, description: "Use it on lap 2 at the first big ramp" },
+{ code: "bSS", number: 2, duration: 11.5, include: true, description: "Use it on lap 3 at the start of the left turn." },
+{ code: "bSS", number: 3, duration: 11.1, include: true, description: "Use it on lap 3 at the last big ramp." },
+{ code: "bSS", number: 4, duration: 8.0, include: true, description: "Use it on lap 3 at the glider. Ends before the finish line." },
+{ code: "bSSy", number: 1, duration: 8.0, include: false, description: "" },
+{ code: "bSSy", number: 2, duration: 9.4, include: true, description: "Use it on lap 3 at the second conveyor." },
+{ code: "bSW", number: 1, duration: 9.6, include: true, description: "Use it right after the second item set. Ends before the last item set." },
+{ code: "bSW", number: 2, duration: 9.2, include: true, description: "Use it before the second shy guy. Ends before the finish line." },
+{ code: "bSW", number: 3, duration: 10.9, include: true, description: "" },
+{ code: "bSW", number: 4, duration: 9.3, include: true, description: "Ends before the second item set." },
+{ code: "bTC", number: 1, duration: 10.3, include: true, description: "Use it next to the first coin." },
+{ code: "bVV", number: 1, duration: 9.2, include: true, description: "Use it on lap 2 after the wet road." },
+{ code: "bVV", number: 2, duration: 8.2, include: false, description: "This is a lap 2 extension." },
+{ code: "bVV", number: 3, duration: 10.0, include: true, description: "Use it on lap 2 at the big grass shortcut." },
+{ code: "bVV", number: 4, duration: 9.4, include: true, description: "Use it on lap 3 at the end of the tunnel." },
+{ code: "bWP", number: 1, duration: 10.0, include: true, description: "" },
+{ code: "bWS", number: 1, duration: 9.1, include: true, description: "" },
+{ code: "bWS", number: 2, duration: 9.1, include: true, description: "" },
+{ code: "bWS", number: 3, duration: 9.1, include: true, description: "" },
+{ code: "bYI", number: 1, duration: 11.2, include: true, description: "" },
+{ code: "bYI", number: 2, duration: 9.5, include: true, description: "" },
+{ code: "bYI", number: 3, duration: 10.7, include: true, description: "" },
+{ code: "dAC", number: 1, duration: 9.9, include: true, description: "Use it at the logs." },
+{ code: "dBB", number: 1, duration: 8.2, include: false, description: "Use it on lap 3 after landing on the conveyors." },
+{ code: "dCL", number: 1, duration: 12.0, include: true, description: "" },
+{ code: "dHC", number: 1, duration: 8.0, include: true, description: "Use it at the top of the stairs. Ends before the shortcut." },
+{ code: "dHC", number: 2, duration: 8.0, include: false, description: "" },
+{ code: "dHC", number: 3, duration: 10.7, include: true, description: "Use it when the split path ends." },
+{ code: "DS", number: 1, duration: 12.0, include: true, description: "Use it after 2 tricks on the eel." },
+{ code: "DS", number: 2, duration: 12.0, include: true, description: "" },
+{ code: "dYC", number: 1, duration: 12.0, include: true, description: "Use it next to the yellow flower on the right. You an also hop into the waterfall and use the bullet late. If you use it at any other place than these 2, the drop off point is bad." },
+{ code: "dYC", number: 2, duration: 10.6, include: true, description: "Use it between the last item set and the sharp turn." },
+{ code: "dYC", number: 3, duration: 9.4, include: true, description: "Use it at the 2nd piranha plant." },
+{ code: "dDD", number: 1, duration: 8.9, include: true, description: "Ends before the last item set." },
+{ code: "dDD", number: 2, duration: 9.1, include: true, description: "Ends before the first item set." },
+{ code: "dIIO", number: 1, duration: 10.9, include: true, description: "Use it after the ramp in the ice hole shortcut." },
+{ code: "dMC", number: 1, duration: 12.0, include: true, description: "Use it on the first boost ramp after item set." },
+];
+
+const instructions = {
+    strategy: {
+        title: "Track Strategy",
+        content: `
+        <p>Search for a track to learn the best racing strategy to use on that track for 150cc. Some tracks have multiple equally viable strategies.</p>
+        <p class="heading">Types of Tracks</p>
+        <p><b>Runner</b>: Best to start in 1st and run.</p>
+        <p><b>Shroomer</b>: Best to start in the back, get a mushroom, take a shortcut, and then run.</p>
+        <p><b>Drafter</b>: Best to get draft boosts at the beginning, and then run.</p>
+        <p><b>Bagger</b>: Best to stay in the back and use items to make a comeback.</p>
+        <p class="heading">Choice of Strategy</p>
+        <p>You should prefer to use the best strategy on a given track, but do not use it 100% of the time. The best strategy at any moment depends on your exact situation, including your items, placement, coin count, nearby threats, time elapsed in the race, and the track.</p>
+        `,
+    },
+    bulletSpots: {
+        title: "Bullet Bill Spots",
+        content: `
+        <p>Search for a track to see the best spots to use a bullet bill on 150cc (click the image to see a video)</p>
+        <p class="heading">Steering the Bullet</p>
+        <p>You can steer a bullet bill slightly by holding left or right. Always steer the bullet bill for sharper turns!</p>
+        <p class="heading">Speed of the Bullet</p>
+        <p>Speed depends on your speed stat and coins. Use the bullet a bit later if your speed is low, so that you can still reach the extension.</p>
+        <p class="heading">Shortcuts</p>
+        <p>Most shortcuts are good bullet spots. However, not all shortcuts can be taken by the bullet.</p>
+        <p class="heading">How Bullet Bills Work</p>
+        <p>The bullet stops if you pass 5 racers, or reach 1st place, or after 8 seconds. However, while the bullet is in an "extension zone", it can only stop after 12 seconds.</p>
+        <p>Note: The bullet will actually stop after passing (N/2 - 1) racers, rounded up, where N is the number of racers (usually 12 racers).</p>
+        `,
+    },
+    itemDistance: {
+        title: "Item Distance Map",
+        content: `
+        <p>Item probabilities are based on both your distance to 1st place, and your placement. Search for a track to see how far away 1st place must be for you to get a star or shock.</p>
+        <p class="heading">How to Use the Map</p>
+        <p>If you are at the red item box, then 1st place must pass the red star icon before you can get a star from the item box.</p>
+        <p class="heading">Probability of Items</p>
+        <p>These are the minimum distances. If 1st place is farther away, then the probability of good items increases.</p>
+        <p class="heading">Placement Also Matters</p>
+        <p>You can get a star starting in <b>2nd</b> place, and you can get the shock in these positions:</p>
+        <p>12 player room: <b>9th</b>+</p>
+        <p>11 player room: <b>8th</b>+</p>
+        <p>10 player room: <b>8th</b>+</p>
+        <p>9 player room: <b>7th</b>+</p>
+        <p>8 player room: <b>7th</b>+</p>
+        <p>7 player room: <b>6th</b>+</p>
+        <p>6 player room: <b>5th</b>+</p>
+        <p>5 player room: <b>5th</b></p>
+        <p>4 player room: <b>4th</b></p>
+        <p>3 player room: <b>3rd</b></p>
+        <p>2 player room: <b>no shock</b></p>
+        `,
+    },
+};
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".form-input").value = "";
+    // populateTrackImages();
+
+    const inputField = document.querySelector(".form-input");
+    inputField.value = "";
+    hideAutocomplete();
+
+    const expandableInstructions = document.getElementById("expandableInstructions");
+    const expandedInstructions = document.getElementById("expandedInstructions");
+    expandedInstructions.style.display = "none";
+
+    expandableInstructions.addEventListener("click", () => {
+        expandedInstructions.style.display = expandedInstructions.style.display === "none" ? "block" : "none";
+        expandButtonInstructions.style.transform = expandedInstructions.style.display === "none" ? "rotate(0deg)" : "rotate(-180deg)";
+    });
+
+    document.getElementById('strategyButton').addEventListener('click', function () {
+        activateSection('strategy');
+    });
+
+    document.getElementById('itemDistanceButton').addEventListener('click', function () {
+        activateSection('itemDistance');
+    });
+
+    document.getElementById('bulletSpotsButton').addEventListener('click', function () {
+        activateSection('bulletSpots');
+    });
+
+    document.getElementById(localStorage.getItem("toggle") || 'strategyButton').click();
+});
+
+// name = strategy / itemDistance / bulletSpots
+function activateSection(name) {
+    hideChildren(document.querySelector('#resultsContainer'));
+    document.getElementById(name).style.display = 'block';
+    toggleButtonOn(`${name}Button`);
+    setInstructions(name);
+}
+
+function hideChildren(parent) {
+    for (let i = 0; i < parent.children.length; i++) {
+        parent.children[i].style.display = 'none';
+    }
+}
+
+function toggleButtonOn(id) {
+    const container = document.querySelector('#toggleButtonContainer');
+    for (let i = 0; i < container.children.length; i++) {
+        container.children[i].classList.add('inactive');
+    }
+    document.querySelector(`#${id}`).classList.remove('inactive');
+    localStorage.setItem("toggle", id);
+}
+
+function setInstructions(name) {
+    const instructionsTitle = document.getElementById("instructionsTitle");
+    const instructionsContent = document.getElementById("expandedInstructions");
+
+    instructionsTitle.innerHTML = instructions[name].title;
+    instructionsContent.innerHTML = instructions[name].content;
+}
+
+function findTrack(name) {
+    return tracks.find(track => track.name === name || (track.alt && track.alt.name === name));
+}
+
+
+let selectedResultIndex = -1;
+
+function showAutocomplete(input) {
+    const resultsContainer = document.getElementById("autocomplete");
+    resultsContainer.innerHTML = "";
+    const searchString = input.toLowerCase().replace(/-/g, " ").replace(/'/g, "");
+
+    let filteredTrackNames = trackNames.filter(trackNameObj => {
+        return Object.values(trackNameObj).slice(0, 2).some(item => item.toLowerCase().replace(/-/g, " ").replace(/'/g, "").includes(searchString));
+    });
+
+    const exactMatchTrack = trackNames.find(track => track.code.toLowerCase() === searchString);
+    if (exactMatchTrack) {
+        filteredTrackNames = [exactMatchTrack, ...filteredTrackNames.filter(track => track !== exactMatchTrack)];
+    }
+
+    selectedResultIndex = filteredTrackNames.length > 0 ? 0 : -1;
+
+    console.log(filteredTrackNames);
+    filteredTrackNames.forEach((trackNameObj, index) => {
+        const trackName = trackNameObj.name;
+        const resultItem = document.createElement("div");
+        resultItem.textContent = trackName;
+        resultItem.classList.add("autocomplete-item");
+        if (index === selectedResultIndex) {
+            resultItem.classList.add("selected");
+        }
+        resultItem.addEventListener("mouseenter", () => {
+            selectedResultIndex = index;
+            highlightSelectedResult();
+        });
+        resultItem.addEventListener("click", () => {
+            selectTrack(findTrack(trackName));
+        });
+        resultsContainer.appendChild(resultItem);
+    });
+}
+
+function hideAutocomplete() {
+    console.log(event.target);
+    document.getElementById("autocomplete").innerHTML = "";
+}
+
+function selectTrack(track) {
+    const trackName = track.name;
+    document.querySelector(".form-input").value = trackName;
+    selectedResultIndex = -1;
+    hideAutocomplete();
+
+    // STRATEGY
+    const trackStrategy = strategy.find(element => element.code === track.code);
+
+    const strategyContainer = document.getElementById("strategy");
+    strategyContainer.innerHTML = "";
+
+    if (trackStrategy) {
+        const strategyElement = document.createElement("div");
+        strategyElement.classList.add("strategy-container", "white-container-shadow");
+
+        const trackIconContainer = document.createElement("div");
+        trackIconContainer.classList.add("strategy-track-icon-container");
+
+        const cupIconImage = document.createElement("img");
+        cupIconImage.classList.add("strategy-cup-icon")
+        cupIconImage.src = `cup-icon/${track.cup}.png`;
+
+        const trackIconImage = document.createElement("img");
+        trackIconImage.classList.add("strategy-track-icon")
+        trackIconImage.src = `track-icon/${track.code}.png`;
+
+        const strategyContent = document.createElement("div");
+        strategyContent.classList.add("strategy-content");
+        strategyContent.innerHTML = `
+            <p class="strategy-point"><b>Track Type</b>: ${trackStrategy.type}</p>
+            <p class="strategy-point"><b>Best Starting Spot</b>: ${trackStrategy.bestPlacement}</p>
+            <p class="strategy-description">${trackStrategy.description}</p>
+        `;
+
+        trackIconContainer.append(cupIconImage);
+        trackIconContainer.append(trackIconImage);
+        strategyElement.append(trackIconContainer);
+        strategyElement.append(strategyContent);
+        strategyContainer.append(strategyElement);
+    }
+    else {
+        const strategyElement = document.createElement("div");
+        strategyElement.classList.add("strategy-container", "white-container-shadow");
+
+        const trackIconContainer = document.createElement("div");
+        trackIconContainer.classList.add("strategy-track-icon-container");
+
+        const cupIconImage = document.createElement("img");
+        cupIconImage.classList.add("strategy-cup-icon")
+        cupIconImage.src = `cup-icon/${track.cup}.png`;
+
+        const trackIconImage = document.createElement("img");
+        trackIconImage.classList.add("strategy-track-icon")
+        trackIconImage.src = `track-icon/${track.code}.png`;
+
+        const strategyContent = document.createElement("div");
+        strategyContent.classList.add("strategy-content");
+        strategyContent.innerHTML = `
+            <p class="strategy-point"><b>Coming soon!</b></p>
+        `;
+
+        trackIconContainer.append(cupIconImage);
+        trackIconContainer.append(trackIconImage);
+        strategyElement.append(trackIconContainer);
+        strategyElement.append(strategyContent);
+        strategyContainer.append(strategyElement);
+    }
+
+    // DISTANCE MAPS
+    const itemDistanceContainer = document.getElementById("itemDistance");
+    itemDistanceContainer.innerHTML = "";
+
+    const numberOfMaps = track.maps;
+
+    for (let i = 1; i <= numberOfMaps; i++) {
+        const imageSrc = numberOfMaps > 1 ? `distance-map/${track.code}-${i}.png` : `distance-map/${track.code}.png`;
+        const imageAlt = `${trackName} - Map ${i}`;
+        const imageElement = `<img src="${imageSrc}" alt="${imageAlt}" class="map-image">`;
+        itemDistanceContainer.innerHTML += imageElement;
+    }
+
+    // BULLET MAPS
+    // {
+    //   const bulletMapsContainer = document.getElementById("bulletMaps");
+    //   bulletMapsContainer.innerHTML = "";
+
+    //   const imageSrc = `map/${track.code}.png`;
+    //   const imageAlt = `${trackName} - Map`;
+    //   const imageElement = `<img src="${imageSrc}" alt="${imageAlt}" class="map-image">`;
+    //   bulletMapsContainer.innerHTML += imageElement;
+    // }
+
+
+    // BULLET SPOTS (IMAGES)
+    {
+        const bulletSpotsContainer = document.getElementById("bulletSpots");
+        bulletSpotsContainer.innerHTML = ""; // Clear previous content
+
+        const bulletSpotsToDisplay = bulletSpots.filter(bulletSpot => bulletSpot.code === track.code);
+
+        if (bulletSpotsToDisplay.length === 0) {
+
+        }
+
+        bulletSpotsToDisplay.forEach(bulletSpot => {
+            if (!bulletSpot.include) return;
+
+            const { code, number, duration, description } = bulletSpot;
+            const imageSrc = `bullet-spots/image/${code}-${number}.png`;
+            const videoSrc = `bullet-spots/video/${code}-${number}.mp4`; // Video source
+            const imageAlt = `${code} - Spot ${number}`;
+
+            const bulletSpotElement = document.createElement("div");
+            bulletSpotElement.classList.add("bullet-spot-container", "white-container-shadow");
+
+            const infoElement = document.createElement("div");
+            infoElement.classList.add("bullet-spot-info");
+
+            const durationElement = document.createElement("p");
+            durationElement.classList.add("bullet-spot-duration");
+            durationElement.innerHTML = `<span style="color: ${getColorForDuration(duration)}">${duration.toFixed(1)}</span> seconds`;
+
+            const descriptionElement = document.createElement("p");
+            descriptionElement.classList.add("bullet-spot-description");
+            descriptionElement.textContent = description;
+
+            infoElement.appendChild(durationElement);
+            infoElement.appendChild(descriptionElement);
+
+            const imageContainer = document.createElement("div");
+            imageContainer.classList.add("bullet-spot-image-container");
+
+            const imageElement = document.createElement("img");
+            imageElement.src = imageSrc;
+            imageElement.alt = imageAlt;
+            imageElement.classList.add("bullet-spot-image");
+
+            const videoElement = document.createElement("video");
+            videoElement.src = videoSrc;
+            videoElement.controls = false;
+            videoElement.loop = true;
+            videoElement.classList.add("bullet-spot-video");
+
+            imageElement.addEventListener("click", () => {
+                imageElement.style.visibility = "hidden";
+                videoElement.style.visibility = "visible";
+                videoElement.play();
+                videoElement.muted = true;
+            });
+
+            videoElement.addEventListener("click", () => {
+                videoElement.pause();
+                videoElement.currentTime = 0;
+                videoElement.style.visibility = "hidden";
+                imageElement.style.visibility = "visible";
+            });
+
+            imageContainer.appendChild(imageElement);
+            imageContainer.appendChild(videoElement);
+
+            bulletSpotElement.appendChild(infoElement);
+            bulletSpotElement.appendChild(imageContainer);
+
+            bulletSpotsContainer.appendChild(bulletSpotElement);
+        });
+    }
+}
+
+function playVideo(videoSrc) {
+    const videoPlayer = document.createElement("video");
+    videoPlayer.src = videoSrc;
+    videoPlayer.controls = true;
+    videoPlayer.autoplay = true;
+
+    const modal = document.createElement("div");
+    modal.classList.add("video-modal");
+    modal.appendChild(videoPlayer);
+
+    document.body.appendChild(modal);
+
+    videoPlayer.addEventListener("ended", () => {
+        document.body.removeChild(modal);
+    });
+}
+
+function highlightSelectedResult() {
+    const results = document.querySelectorAll(".autocomplete-item");
+    results.forEach((result, index) => {
+        if (index === selectedResultIndex) {
+            result.classList.add("selected");
+        } else {
+            result.classList.remove("selected");
+        }
+    });
+}
+
+function populateTrackImages() {
+    const leftTrackImagesContainer = document.getElementById("leftTrackImages");
+    const rightTrackImagesContainer = document.getElementById("rightTrackImages");
+
+    tracks.forEach((track, index) => {
+
+        const imageSrc = `track-icon/${track.code}.png`;
+        const imageAlt = `${track.name} - Map`;
+        const imageElement = `<img src="${imageSrc}" alt="${imageAlt}" class="track-icon" onclick="selectTrackFromImage('${track.name}')">`;
+
+        if (index < 48) {
+            leftTrackImagesContainer.innerHTML += imageElement;
+        } else {
+            rightTrackImagesContainer.innerHTML += imageElement;
+        }
+    });
+}
+
+
+function selectTrackFromImage(trackName) {
+    const track = tracks.find(track => track.name === trackName);
+    selectTrack(track);
+}
+
+document.querySelector(".form-input").addEventListener("keydown", (e) => {
+    const results = document.querySelectorAll(".autocomplete-item");
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        selectedResultIndex = Math.min(selectedResultIndex + 1, results.length - 1);
+        highlightSelectedResult();
+    } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        selectedResultIndex = Math.max(selectedResultIndex - 1, -1);
+        highlightSelectedResult();
+    } else if (e.key === "Enter") {
+        if (selectedResultIndex !== -1) {
+            const selectedResult = results[selectedResultIndex];
+            const trackName = selectedResult.textContent;
+            const track = findTrack(trackName);
+            selectTrack(track);
+        }
+    }
+});
+
+document.body.addEventListener('click', function (event) {
+    const form = document.querySelector('.form-input');
+    const autocomplete = document.getElementById('autocomplete');
+
+    if (!form.contains(event.target) && !autocomplete.contains(event.target)) {
+        hideAutocomplete();
+    }
+});
+
+function getColorForDuration(duration) {
+    const minDuration = 8.0;
+    const maxDuration = 12.0;
+    const normalizedDuration = (duration - minDuration) / (maxDuration - minDuration);
+    const hue = 0 + (normalizedDuration * 120);
+    return `hsl(${hue}, 100%, 40%)`;
+}
