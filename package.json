@@ -8,6 +8,7 @@
     "node": "21.x"
   },
   "scripts": {
+    "start": "node app.js",
     "register": "node commands.js",
     "dev": "nodemon app.js"
   },
