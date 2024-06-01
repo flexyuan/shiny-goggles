@@ -1,6 +1,5 @@
 import {Client, GatewayIntentBits} from 'discord.js';
 import {TOKEN} from './config.js';
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
 import {handleStartegyMessage, handleBillMessage} from './src/handler.js';
 import http from 'http';
 
@@ -21,6 +20,8 @@ server.listen(PORT, () => {
 });
 
 
+
+const client = new Client({intents: [GatewayIntentBits.Guilds]});
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
